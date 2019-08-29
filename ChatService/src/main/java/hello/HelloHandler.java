@@ -14,12 +14,22 @@ import io.netty.util.CharsetUtil;
 public class HelloHandler extends SimpleChannelInboundHandler<HttpObject> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
+
+
+        System.out.println("\n\n\n ’µΩ£∫"+msg);
+        if (!(msg instanceof HttpRequest)){
+            ctx.close();
+        }
         Channel channel = ctx.channel();
+
+
+        System.out.println(channel.remoteAddress());
 
         ByteBuf byteBuf = Unpooled.copiedBuffer("hello netty", CharsetUtil.UTF_8);
 
-        DefaultFullHttpResponse res = new DefaultFullHttpResponse(HttpVersion.HTTP_1_0, HttpResponseStatus.OK, byteBuf);
+        FullHttpResponse res = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, byteBuf);
 
+        System.out.println("ªÿ∏¥£∫"+res);
         channel.writeAndFlush(res);
     }
 }

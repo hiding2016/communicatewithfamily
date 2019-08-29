@@ -30,9 +30,10 @@ public class HelloNetty {
                         }
                     });
 
-            ChannelFuture channelFuture = serverBootstrap.bind(8080).sync();
-
-            channelFuture.channel().close().sync();
+            int port = 8080;
+            ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+            System.out.println("Æô¶¯³É¹¦¼àÌý£º"+port);
+            channelFuture.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
