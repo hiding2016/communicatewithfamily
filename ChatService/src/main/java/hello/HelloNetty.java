@@ -10,7 +10,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpServerCodec;
 
 /**
- * Created by SoberYang@foxmail.com on 2019/8/29
+ * Created by sober_yang@foxmail.com on 2019/8/29
  */
 public class HelloNetty {
     public static void main(String[] args) throws InterruptedException {

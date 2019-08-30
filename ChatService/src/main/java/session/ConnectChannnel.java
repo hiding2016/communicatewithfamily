@@ -5,7 +5,7 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 /**
- * Created by SoberYang@foxmail.com on 2019/8/29
+ * Created by sober_yang@foxmail.com on 2019/8/29
  */
 public class ConnectChannnel {
     //用于记录和管理所有客户端的channel

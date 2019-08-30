@@ -9,7 +9,7 @@ import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
 /**
- * Created by SoberYang@foxmail.com on 2019/8/29
+ * Created by sober_yang@foxmail.com on 2019/8/29
  */
 public class HelloHandler extends SimpleChannelInboundHandler<HttpObject> {
     @Override

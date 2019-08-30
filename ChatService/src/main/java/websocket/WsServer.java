@@ -14,7 +14,7 @@ import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
 /**
- * Created by SoberYang@foxmail.com on 2019/8/29
+ * Created by sober_yang@foxmail.com on 2019/8/29
  */
 public class WsServer  {
     public static void main(String[] args) throws InterruptedException {
@@ -40,7 +40,7 @@ public class WsServer  {
                             //This handler does all the heavy lifting for you to run a websocket server.并处理握手动作和文本、二进制数据等的传输
                             pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
 
-                            pipeline.addLast(null);
+                            pipeline.addLast(new ChatHandler());
                         }
                     });
             int port = 8081;

@@ -9,7 +9,7 @@ import session.ConnectChannnel;
 import java.time.LocalDateTime;
 
 /**
- * Created by SoberYang@foxmail.com on 2019/8/29
+ * Created by sober_yang@foxmail.com on 2019/8/29
  * 处理消息的handler
  * TextWebSocketFrame ： 在netty中专门为websocket处理文本的对象，frame是消息的载体
  */
@@ -32,7 +32,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        //当触发handlerRemoved channelGroup会自动移除对应的客户端channel
+        //当触发handlerRemoved channelGroup会自动移除对应的客户端channel,下面这句可以注释掉。
         ConnectChannnel.channels.remove(ctx.channel());
         System.out.println("客户端断开，对应长ID"+ctx.channel().id().asLongText());
         System.out.println("            对应短ID"+ctx.channel().id().asShortText());
