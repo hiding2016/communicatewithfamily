@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+      <link href="css/header.css" rel="stylesheet"/>
+      <link rel="stylesheet" type="text/css" href="font_icon/iconfont.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+//    	等待加载完成
+      	mui.plusReady(function(){
+      		plus.navigator.setStatusBarStyle("light");
+      		plus.navigator.setStatusBarBackground("#007AFF");
+      	});
+      	
+      	
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav title">
+	    <h1 class="mui-title title-color">咱们一家人</h1>
+	</header>
+	
+	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item  mui-active " tabindex="0">
+	        <span class="mui-icon  iconfont icon-liaotian1"></span>
+	        <span class="mui-tab-label">聊天</span>
+	    </a>
+	    <a class="mui-tab-item" tabindex="1">
+	        <span class="mui-icon iconfont  icon-haoyouliebiao"></span>
+	        <span class="mui-tab-label">亲友团</span>
+	    </a>
+	    <a class="mui-tab-item" tabindex="2">
+	        <span class="mui-icon iconfont  icon-pengyouquan1"></span>
+	        <span class="mui-tab-label">亲友圈</span>
+	    </a>
+	    <a class="mui-tab-item " tabindex="3">
+	        <span class="mui-icon iconfont  icon-wo3"></span>
+	        <span class="mui-tab-label">我</span>
+	    </a>
+	</nav>
+	
+	
+	
+	<script type="text/javascript">
+		var subPageArray =[
+			{
+				pageId: "ymail-chatList.html",
+				pageUrl:"ymail-chatList.html"
+			},
+			{
+				pageId: "ymail-contact.html",
+				pageUrl:"ymail-contact.html"
+			},
+			{
+				pageId: "ymail-discover.html",
+				pageUrl:"ymail-discover.html"
+			},
+			{
+				pageId: "ymail-me.html",
+				pageUrl:"ymail-me.html"
+			}
+		];
+		var subPageStyle={
+			top:'44px',
+			bottom:'50px'
+		};
+		mui.plusReady(function(){
+			//当前页面对象
+			var indexWebview = plus.webview.currentWebview();
+			
+			
+			//向当前的页面添加子页
+			for (var i = 0;i<subPageArray.length; i++) {
+				var ymailPage = plus.webview.create(subPageArray[i].pageUrl,subPageArray[i].pageId,subPageStyle);
+				//隐藏webwiew窗口
+				ymailPage.hide();
+				//追加子页面到主页面
+				indexWebview.append(ymailPage);
+			}
+			
+			plus.webview.show(subPageArray[0].pageId);
+			
+			
+			//批量绑定tap事件
+			mui(".mui-bar-tab").on("tap","a",function(){
+				var tabindex = this.getAttribute("tabindex");
+				plus.webview.show(subPageArray[tabindex].pageId,"zoom-fade-in",200);
+				for (var i = 0;i<subPageArray.length; i++) {
+					if(i != tabindex){
+						plus.webview.hide(subPageArray[i].pageId,"fade-out",200);
+					}
+				}
+				
+			});
+		});
+	</script>
+</body>
+</html>

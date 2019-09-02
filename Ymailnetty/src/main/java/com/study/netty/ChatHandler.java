@@ -1,26 +1,25 @@
-package websocket;
+package com.study.netty;
 
-import io.netty.channel.Channel;
+import com.study.session.ConnectChannnel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import session.ConnectChannnel;
 
 import java.time.LocalDateTime;
 
 /**
  * Created by sober_yang@foxmail.com on 2019/8/29
- * ´¦ÀíÏûÏ¢µÄhandler
- * TextWebSocketFrame £º ÔÚnettyÖĞ×¨ÃÅÎªwebsocket´¦ÀíÎÄ±¾µÄ¶ÔÏó£¬frameÊÇÏûÏ¢µÄÔØÌå
+ * å¤„ç†æ¶ˆæ¯çš„handler
+ * TextWebSocketFrame ï¼š åœ¨nettyä¸­ä¸“é—¨ä¸ºwebsocketå¤„ç†æ–‡æœ¬çš„å¯¹è±¡ï¼Œframeæ˜¯æ¶ˆæ¯çš„è½½ä½“
  */
 public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
 
         String requestMsg = msg.text();
-        System.out.println("ÊÕµ½µÄÊı¾İ£º"+requestMsg);
+        System.out.println("æ”¶åˆ°çš„æ•°æ®ï¼š"+requestMsg);
 
-        TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame("[·şÎñÆ÷½ÓÊÕµ½ÏûÏ¢] \'"+ LocalDateTime.now()+"\":"+requestMsg+"  À´×Ô£º"+ctx.channel().remoteAddress());
+        TextWebSocketFrame textWebSocketFrame = new TextWebSocketFrame("[æœåŠ¡å™¨æ¥æ”¶åˆ°æ¶ˆæ¯] \'"+ LocalDateTime.now()+"\":"+requestMsg+"  æ¥è‡ªï¼š"+ctx.channel().remoteAddress());
         ConnectChannnel.channels.writeAndFlush(textWebSocketFrame);
 
     }
@@ -32,9 +31,9 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        //µ±´¥·¢handlerRemoved channelGroup»á×Ô¶¯ÒÆ³ı¶ÔÓ¦µÄ¿Í»§¶Ëchannel,ÏÂÃæÕâ¾ä¿ÉÒÔ×¢ÊÍµô¡£
+        //å½“è§¦å‘handlerRemoved channelGroupä¼šè‡ªåŠ¨ç§»é™¤å¯¹åº”çš„å®¢æˆ·ç«¯channel,ä¸‹é¢è¿™å¥å¯ä»¥æ³¨é‡Šæ‰ã€‚
         ConnectChannnel.channels.remove(ctx.channel());
-        System.out.println("¿Í»§¶Ë¶Ï¿ª£¬¶ÔÓ¦³¤ID"+ctx.channel().id().asLongText());
-        System.out.println("            ¶ÔÓ¦¶ÌID"+ctx.channel().id().asShortText());
+        System.out.println("å®¢æˆ·ç«¯æ–­å¼€ï¼Œå¯¹åº”é•¿ID"+ctx.channel().id().asLongText());
+        System.out.println("            å¯¹åº”çŸ­ID"+ctx.channel().id().asShortText());
     }
 }

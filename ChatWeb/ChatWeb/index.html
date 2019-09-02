@@ -7,12 +7,46 @@
 	<body>
 		<div>发送消息：</div>
 		<input type="text" id="msgContent"/>
-		<input type="button" value="点我发送"  />
+		<input type="button" value="点我发送" onclick="CHAT.chat()" />
 		
 		<div>接收消息：</div>
 		<div id="receiveMsg" style="background-color: gainsboro;"></div>
 	
 	
+	<script type="application/javascript">
+		window.CHAT ={
+			socket : null,
+			init:function(){
+				if(window.WebSocket){
+					
+					CHAT.socket = new WebSocket("ws://127.0.0.1:8088/ws");
+					
+					CHAT.socket.onopen =function(){
+						console.log("建立连接成功！");
+					},
+					CHAT.socket.onclose =function(){
+						console.log("断开连接");
+					},
+					
+				CHAT.socket.onmessage = function(e){
+					console.log("收到消息："+e.data);
+					var receive  = document.getElementById("receiveMsg");
+					var html = receive.innerHTML;
+					receive.innerHTML =html+"<br/>"+e.data;
+					
+				}
+				}else{
+					alert("不支持websocket");
+				}
+			},
+			chat:function(){
+				var msg = document.getElementById("msgContent");
+				CHAT.socket.send(msg.value);
+			}
+		};
+		
+		CHAT.init();
+	</script>
 	
 	</body>
 </html>

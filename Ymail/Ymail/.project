@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ChatWeb</name>
+	<name>Ymail</name>
 	<comment>Create By HBuilder</comment>
 	<projects>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>com.pandora.projects.ui.MKeyBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 		<buildCommand>
 			<name>com.aptana.ide.core.unifiedBuilder</name>
 			<arguments>
@@ -12,11 +17,12 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>com.pandora.projects.ui.MKeyNature</nature>
 		<nature>com.aptana.projects.webnature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1567138043216</id>
+			<id>1567183932109</id>
 			<name></name>
 			<type>10</type>
 			<matcher>
@@ -34,7 +40,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1567181407010</id>
+			<id>1567253373208</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
@@ -43,16 +49,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1567181407017</id>
-			<name></name>
-			<type>26</type>
-			<matcher>
-				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-node_modules</arguments>
-			</matcher>
-		</filter>
-		<filter>
-			<id>1567342213073</id>
+			<id>1567253373218</id>
 			<name></name>
 			<type>26</type>
 			<matcher>

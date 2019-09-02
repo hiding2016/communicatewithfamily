@@ -43,8 +43,11 @@ public class WsServer  {
                             pipeline.addLast(new ChatHandler());
                         }
                     });
-            int port = 8081;
+            int port = 8080;
             ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+            if (channelFuture.isDone()){
+                System.out.println("wsServerÆô¶¯ÔÚ"+port);
+            }
             channelFuture.channel().closeFuture().sync();
         } finally {
             mainGroup.shutdownGracefully();
